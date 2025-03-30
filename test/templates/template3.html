@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShopNow E-commerce Template - TemplateTrove</title>
+    <meta name="description" content="A modern e-commerce template for online stores" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: '#f0f9ff',
+                100: '#e0f2fe',
+                200: '#bae6fd',
+                300: '#7dd3fc',
+                400: '#38bdf8',
+                500: '#0ea5e9',
+                600: '#0284c7',
+                700: '#0369a1',
+                800: '#075985',
+                900: '#0c4a6e',
+              },
+              dark: {
+                bg: '#121826',
+                card: '#1e293b',
+                border: '#334155'
+              }
+            }
+          }
+        }
+      }
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../css/template3.css">
+  </head>
+
+  <body class="bg-gray-50 text-gray-900 dark:bg-dark-bg dark:text-gray-100 transition-colors duration-200">
+    <div id="root">
+      <!-- Announcement Bar -->
+      <div class="bg-primary-600 dark:bg-primary-900 text-white text-center py-2 text-sm">
+        <div class="container mx-auto px-4">
+          Free shipping on all orders over $50 | Use code SUMMER20 for 20% off
+        </div>
+      </div>
+      
+      <!-- Header -->
+      <header class="bg-white dark:bg-dark-card shadow-sm sticky top-0 z-30">
+        <div class="container mx-auto px-4">
+          <!-- Top header -->
+          <div class="flex items-center justify-between py-4 border-b border-gray-200 dark:border-dark-border">
+            <a href="../index.html" class="flex items-center gap-2">
+              <div class="text-primary-600 dark:text-primary-400 text-3xl">
+                <i class="fas fa-shopping-bag"></i>
+              </div>
+              <h1 class="text-xl font-bold">ShopNow</h1>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8 ml-auto mr-8">
+              <a href="#" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">About</a>
+              <a href="#" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Contact</a>
+              <a href="#" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Blog</a>
+            </div>
+            
+            <div class="flex items-center gap-3">
+              <button id="darkModeToggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-dark-border transition-colors">
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:block text-yellow-300"></i>
+              </button>
+              
+              <button id="searchToggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-dark-border transition-colors hidden md:block">
+                <i class="fas fa-search"></i>
+              </button>
+              
+              <a href="#" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-dark-border transition-colors hidden md:block">
+                <i class="fas fa-user"></i>
+              </a>
+              
+              <button id="wishlistBtn" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-dark-border transition-colors relative">
+                <i class="fas fa-heart"></i>
+                <span id="wishlistCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">0</span>
+              </button>
+              
+              <a href="#" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-dark-border transition-colors relative">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="absolute -top-1 -right-1 bg-primary-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">3</span>
+              </a>
+              
+              <button class="md:hidden" id="mobileMenuBtn">
+                <i class="fas fa-bars text-xl"></i>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Category Navigation -->
+          <nav class="py-4 hidden md:block">
+            <ul class="flex items-center justify-center space-x-8">
+              <li><a href="#" class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">New Arrivals</a></li>
+              <li><a href="#" class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Women</a></li>
+              <li><a href="#" class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Men</a></li>
+              <li><a href="#" class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Accessories</a></li>
+              <li><a href="#" class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Home</a></li>
+              <li><a href="#" class="font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Sale</a></li>
+            </ul>
+          </nav>
+        </div>
+        
+        <!-- Search Overlay -->
+        <div id="searchOverlay" class="fixed inset-0 bg-black/70 z-50 hidden flex items-start pt-24 justify-center">
+          <div class="bg-white dark:bg-dark-card rounded-lg w-full max-w-2xl mx-4 overflow-hidden">
+            <div class="p-4 relative">
+              <div class="relative">
+                <input type="text" placeholder="Search for products..." class="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg pr-10 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-dark-bg">
+                <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+              <button id="closeSearch" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                <i class="fas fa-times"></i>
+              </button>
+              <div class="mt-4">
+                <h3 class="font-semibold mb-2">Popular Searches</h3>
+                <div class="flex flex-wrap gap-2">
+                  <a href="#" class="px-3 py-1 bg-gray-100 dark:bg-dark-border rounded-full text-sm hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">Summer dresses</a>
+                  <a href="#" class="px-3 py-1 bg-gray-100 dark:bg-dark-border rounded-full text-sm hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">Men's shoes</a>
+                  <a href="#" class="px-3 py-1 bg-gray-100 dark:bg-dark-border rounded-full text-sm hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">Accessories</a>
+                  <a href="#" class="px-3 py-1 bg-gray-100 dark:bg-dark-border rounded-full text-sm hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">New arrivals</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-dark-card border-t border-gray-200 dark:border-dark-border">
+          <div class="container mx-auto px-4 py-4">
+            <div class="mb-4 relative">
+              <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
+                <i class="fas fa-search text-gray-400"></i>
+              </span>
+              <input type="text" placeholder="Search products..." class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 dark:border-dark-border focus:outline-none focus:ring-2 focus:ring-primary-400 dark:focus:ring-primary-600 dark:bg-dark-bg">
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4 mb-6">
+              <a href="#" class="text-center py-3 bg-primary-600 text-white rounded-lg">
+                <i class="fas fa-user mr-2"></i>Sign In
+              </a>
+              <a href="#" class="text-center py-3 bg-gray-100 dark:bg-dark-border text-gray-800 dark:text-gray-200 rounded-lg">
+                <i class="fas fa-user-plus mr-2"></i>Register
+              </a>
+            </div>
+            
+            <div class="space-y-3">
+              <p class="font-bold mb-2">Categories</p>
+              <a href="#" class="block py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">New Arrivals</a>
+              <a href="#" class="block py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Women</a>
+              <a href="#" class="block py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Men</a>
+              <a href="#" class="block py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Accessories</a>
+              <a href="#" class="block py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Home</a>
+              <a href="#" class="block py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Sale</a>
+            </div>
+            
+            <div class="border-t border-gray-200 dark:border-dark-border mt-6 pt-6 space-y-3">
+              <a href="#" class="block py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">About</a>
+              <a href="#" class="block py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Contact</a>
+              <a href="#" class="block py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Blog</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Hero Section -->
+      <section class="bg-gradient-to-r from-primary-600 to-primary-800 dark:from-primary-900 dark:to-primary-700 text-white py-16 md:py-24">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+              <span class="inline-block px-3 py-1 bg-white/20 rounded-full text-sm font-medium mb-4">New Summer Collection</span>
+              <h1 class="text-4xl md:text-5xl font-bold mb-4">Style for Every Moment</h1>
+              <p class="text-lg mb-8 text-white/90">
+                Discover our latest collection of trendy clothes and accessories that will keep you looking your best all season long.
+              </p>
+              <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#products" class="btn btn-light">Shop Now</a>
+                <a href="#" class="btn btn-outline-light">Learn More</a>
+              </div>
+            </div>
+            <div class="hidden md:block">
+              <img 
+                src="https://images.unsplash.com/photo-1483985988355-763728e1935b?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=MnwxfDB8MXxyYW5kb218MHx8ZmFzaGlvbix3b21hbnx8fHx8fDE2ODUwMjg1NDA&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=700" 
+                alt="Fashion Model" 
+                class="rounded-lg shadow-xl"
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Categories -->
+      <section class="py-12 md:py-16">
+        <div class="container mx-auto px-4">
+          <h2 class="text-2xl font-bold mb-10 text-center">Shop by Category</h2>
+          
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            <a href="#" class="group">
+              <div class="relative rounded-lg overflow-hidden aspect-square">
+                <img 
+                  src="https://images.unsplash.com/photo-1591369822096-ffd140ec948f?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=MnwxfDB8MXxyYW5kb218MHx8d29tZW4sZmFzaGlvbnx8fHx8fDE2ODUwMjg2NjQ&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500" 
+                  alt="Women's Fashion" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                  <h3 class="text-white font-bold">Women</h3>
+                </div>
+              </div>
+            </a>
+            
+            <a href="#" class="group">
+              <div class="relative rounded-lg overflow-hidden aspect-square">
+                <img 
+                  src="https://images.unsplash.com/photo-1617137968427-85924c800a22?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=MnwxfDB8MXxyYW5kb218MHx8bWVuLGZhc2hpb258fHx8fHwxNjg1MDI4Njk1&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500" 
+                  alt="Men's Fashion" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                  <h3 class="text-white font-bold">Men</h3>
+                </div>
+              </div>
+            </a>
+            
+            <a href="#" class="group">
+              <div class="relative rounded-lg overflow-hidden aspect-square">
+                <img 
+                  src="https://images.unsplash.com/photo-1618354691792-d1d42acfd860?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=MnwxfDB8MXxyYW5kb218MHx8YWNjZXNzb3JpZXMsZmFzaGlvbnx8fHx8fDE2ODUwMjg3NDM&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500" 
+                  alt="Accessories" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                  <h3 class="text-white font-bold">Accessories</h3>
+                </div>
+              </div>
+            </a>
+            
+            <a href="#" class="group">
+              <div class="relative rounded-lg overflow-hidden aspect-square">
+                <img 
+                  src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=MnwxfDB8MXxyYW5kb218MHx8c2hvZXMsZmFzaGlvbnx8fHx8fDE2ODUwMjg3ODI&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500" 
+                  alt="Shoes" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                  <h3 class="text-white font-bold">Shoes</h3>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Products Section -->
+      <section id="products" class="py-12 md:py-16 bg-gray-50 dark:bg-gray-900/30">
+        <div class="container mx-auto px-4">
+          <div class="flex justify-between items-center mb-8">
+            <h2 class="text-2xl font-bold">New Arrivals</h2>
+            
+            <div class="hidden md:flex space-x-2">
+              <button class="filter-btn active" data-category="all">All</button>
+              <button class="filter-btn" data-category="women">Women</button>
+              <button class="filter-btn" data-category="men">Men</button>
+              <button class="filter-btn" data-category="accessories">Accessories</button>
+            </div>
+          </div>
+          
+          <!-- Mobile Filter -->
+          <div class="md:hidden mb-6">
+            <select id="mobileFilter" class="w-full p-2 border border-gray-300 dark:border-dark-border rounded bg-white dark:bg-dark-card">
+              <option value="all">All Products</option>
+              <option value="women">Women</option>
+              <option value="men">Men</option>
+              <option value="accessories">Accessories</option>
+            </select>
+          </div>
+          
+          <!-- Products Grid -->
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            <!-- Product 1 -->
+            <div class="product-card" data-category="women">
+              <div class="bg-white dark:bg-dark-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+                <div class="relative aspect-[3/4] overflow-hidden group">
+                  <span class="absolute top-2 left-2 bg-primary-600 text-white text-xs font-bold px-2 py-1 rounded-full z-10">New</span>
+                  <img 
+                    src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8d29tZW4sZHJlc3N8fHx8fHwxNjg1MDI4ODky&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500" 
+                    alt="Summer Dress" 
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  >
+                  <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors add-to-cart-btn">
+                      <i class="fas fa-shopping-cart"></i>
+                    </button>
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors wishlist-btn">
+                      <i class="fas fa-heart"></i>
+                    </button>
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors quick-view-btn" data-product-id="1">
+                      <i class="fas fa-eye"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h3 class="font-medium mb-1 truncate">Summer Floral Dress</h3>
+                  <div class="text-gray-600 dark:text-gray-400 text-sm mb-2">Women's Fashion</div>
+                  <div class="flex items-center justify-between">
+                    <div class="font-bold">$49.99</div>
+                    <div class="flex items-center text-yellow-400 text-sm">
+                      <i class="fas fa-star"></i>
+                      <span class="ml-1 text-gray-600 dark:text-gray-400">4.8</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card" data-category="men">
+              <div class="bg-white dark:bg-dark-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+                <div class="relative aspect-[3/4] overflow-hidden group">
+                  <img 
+                    src="https://images.unsplash.com/photo-1617196034183-421b4917c92d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8bWVuLHNoaXJ0fHx8fHx8MTY4NTAyODk1NQ&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500" 
+                    alt="Men's Shirt" 
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  >
+                  <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors add-to-cart-btn">
+                      <i class="fas fa-shopping-cart"></i>
+                    </button>
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors wishlist-btn">
+                      <i class="fas fa-heart"></i>
+                    </button>
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors quick-view-btn" data-product-id="2">
+                      <i class="fas fa-eye"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h3 class="font-medium mb-1 truncate">Classic Blue Oxford Shirt</h3>
+                  <div class="text-gray-600 dark:text-gray-400 text-sm mb-2">Men's Fashion</div>
+                  <div class="flex items-center justify-between">
+                    <div class="font-bold">$38.50</div>
+                    <div class="flex items-center text-yellow-400 text-sm">
+                      <i class="fas fa-star"></i>
+                      <span class="ml-1 text-gray-600 dark:text-gray-400">4.7</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card" data-category="accessories">
+              <div class="bg-white dark:bg-dark-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+                <div class="relative aspect-[3/4] overflow-hidden group">
+                  <img 
+                    src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8YWNjZXNzb3JpZXMsd2F0Y2h8fHx8fHwxNjg1MDI5MDAx&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500" 
+                    alt="Watch" 
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  >
+                  <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors add-to-cart-btn">
+                      <i class="fas fa-shopping-cart"></i>
+                    </button>
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors wishlist-btn">
+                      <i class="fas fa-heart"></i>
+                    </button>
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors quick-view-btn" data-product-id="3">
+                      <i class="fas fa-eye"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h3 class="font-medium mb-1 truncate">Minimalist Chronograph Watch</h3>
+                  <div class="text-gray-600 dark:text-gray-400 text-sm mb-2">Accessories</div>
+                  <div class="flex items-center justify-between">
+                    <div class="font-bold">$129.99</div>
+                    <div class="flex items-center text-yellow-400 text-sm">
+                      <i class="fas fa-star"></i>
+                      <span class="ml-1 text-gray-600 dark:text-gray-400">4.9</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card" data-category="women">
+              <div class="bg-white dark:bg-dark-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+                <div class="relative aspect-[3/4] overflow-hidden group">
+                  <span class="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full z-10">-20%</span>
+                  <img 
+                    src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8d29tZW4samVhbnN8fHx8fHwxNjg1MDI5MDUw&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500" 
+                    alt="Women's Jeans" 
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  >
+                  <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors add-to-cart-btn">
+                      <i class="fas fa-shopping-cart"></i>
+                    </button>
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors wishlist-btn">
+                      <i class="fas fa-heart"></i>
+                    </button>
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors quick-view-btn" data-product-id="4">
+                      <i class="fas fa-eye"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h3 class="font-medium mb-1 truncate">High-Waisted Skinny Jeans</h3>
+                  <div class="text-gray-600 dark:text-gray-400 text-sm mb-2">Women's Fashion</div>
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <span class="font-bold">$39.99</span>
+                      <span class="text-gray-500 line-through ml-2 text-sm">$49.99</span>
+                    </div>
+                    <div class="flex items-center text-yellow-400 text-sm">
+                      <i class="fas fa-star"></i>
+                      <span class="ml-1 text-gray-600 dark:text-gray-400">4.5</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Product 5 -->
+            <div class="product-card" data-category="men">
+              <div class="bg-white dark:bg-dark-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+                <div class="relative aspect-[3/4] overflow-hidden group">
+                  <img 
+                    src="https://images.unsplash.com/photo-1509182469511-7f0b50bfa63e?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8bWVuLGphY2tldHx8fHx8fDE2ODUwMjkwOTI&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500" 
+                    alt="Men's Jacket" 
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  >
+                  <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors add-to-cart-btn">
+                      <i class="fas fa-shopping-cart"></i>
+                    </button>
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors wishlist-btn">
+                      <i class="fas fa-heart"></i>
+                    </button>
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors quick-view-btn" data-product-id="5">
+                      <i class="fas fa-eye"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h3 class="font-medium mb-1 truncate">Slim Fit Bomber Jacket</h3>
+                  <div class="text-gray-600 dark:text-gray-400 text-sm mb-2">Men's Fashion</div>
+                  <div class="flex items-center justify-between">
+                    <div class="font-bold">$89.99</div>
+                    <div class="flex items-center text-yellow-400 text-sm">
+                      <i class="fas fa-star"></i>
+                      <span class="ml-1 text-gray-600 dark:text-gray-400">4.6</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Product 6 -->
+            <div class="product-card" data-category="accessories">
+              <div class="bg-white dark:bg-dark-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+                <div class="relative aspect-[3/4] overflow-hidden group">
+                  <img 
+                    src="https://images.unsplash.com/photo-1590548784585-643d2b9f2925?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8YWNjZXNzb3JpZXMsYmFnfHx8fHx8MTY4NTAyOTEzNQ&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500" 
+                    alt="Leather Bag" 
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  >
+                  <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors add-to-cart-btn">
+                      <i class="fas fa-shopping-cart"></i>
+                    </button>
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors wishlist-btn">
+                      <i class="fas fa-heart"></i>
+                    </button>
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors quick-view-btn" data-product-id="6">
+                      <i class="fas fa-eye"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h3 class="font-medium mb-1 truncate">Genuine Leather Crossbody Bag</h3>
+                  <div class="text-gray-600 dark:text-gray-400 text-sm mb-2">Accessories</div>
+                  <div class="flex items-center justify-between">
+                    <div class="font-bold">$79.99</div>
+                    <div class="flex items-center text-yellow-400 text-sm">
+                      <i class="fas fa-star"></i>
+                      <span class="ml-1 text-gray-600 dark:text-gray-400">4.7</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Product 7 -->
+            <div class="product-card" data-category="women">
+              <div class="bg-white dark:bg-dark-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+                <div class="relative aspect-[3/4] overflow-hidden group">
+                  <img 
+                    src="https://images.unsplash.com/photo-1551163943-3f7253a9ee72?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8d29tZW4sc3dlYXRlcnx8fHx8fDE2ODUwMjkxOTU&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500" 
+                    alt="Women's Sweater" 
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  >
+                  <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors add-to-cart-btn">
+                      <i class="fas fa-shopping-cart"></i>
+                    </button>
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors wishlist-btn">
+                      <i class="fas fa-heart"></i>
+                    </button>
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors quick-view-btn" data-product-id="7">
+                      <i class="fas fa-eye"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h3 class="font-medium mb-1 truncate">Cozy Knit Turtleneck Sweater</h3>
+                  <div class="text-gray-600 dark:text-gray-400 text-sm mb-2">Women's Fashion</div>
+                  <div class="flex items-center justify-between">
+                    <div class="font-bold">$59.99</div>
+                    <div class="flex items-center text-yellow-400 text-sm">
+                      <i class="fas fa-star"></i>
+                      <span class="ml-1 text-gray-600 dark:text-gray-400">4.8</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Product 8 -->
+            <div class="product-card" data-category="men">
+              <div class="bg-white dark:bg-dark-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+                <div class="relative aspect-[3/4] overflow-hidden group">
+                  <span class="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full z-10">-15%</span>
+                  <img 
+                    src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8bWVuLHN1aXR8fHx8fHwxNjg1MDI5MjMz&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500" 
+                    alt="Men's Suit" 
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  >
+                  <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors add-to-cart-btn">
+                      <i class="fas fa-shopping-cart"></i>
+                    </button>
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors wishlist-btn">
+                      <i class="fas fa-heart"></i>
+                    </button>
+                    <button class="bg-white text-gray-900 p-2 rounded-full mx-1 hover:bg-gray-100 transition-colors quick-view-btn" data-product-id="8">
+                      <i class="fas fa-eye"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h3 class="font-medium mb-1 truncate">Slim Fit Wool Blend Suit</h3>
+                  <div class="text-gray-600 dark:text-gray-400 text-sm mb-2">Men's Fashion</div>
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <span class="font-bold">$199.99</span>
+                      <span class="text-gray-500 line-through ml-2 text-sm">$235.00</span>
+                    </div>
+                    <div class="flex items-center text-yellow-400 text-sm">
+                      <i class="fas fa-star"></i>
+                      <span class="ml-1 text-gray-600 dark:text-gray-400">4.9</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Load More Button -->
+          <div class="mt-10 text-center">
+            <button id="loadMoreBtn" class="btn btn-primary-outline">
+              Load More Products
+            </button>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Features Section -->
+      <section class="py-12 md:py-16">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="text-center">
+              <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-truck text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-bold mb-2">Free Shipping</h3>
+              <p class="text-gray-600 dark:text-gray-400">Free worldwide shipping on all orders over $50</p>
+            </div>
+            
+            <div class="text-center">
+              <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-undo text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-bold mb-2">30 Days Return</h3>
+              <p class="text-gray-600 dark:text-gray-400">Easy returns within 30 days of purchase</p>
+            </div>
+            
+            <div class="text-center">
+              <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-lock text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-bold mb-2">Secure Payments</h3>
+              <p class="text-gray-600 dark:text-gray-400">All payments are processed securely</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Newsletter Section -->
+      <section class="py-12 md:py-16 bg-primary-50 dark:bg-primary-900/20">
+        <div class="container mx-auto px-4">
+          <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-2xl font-bold mb-4">Subscribe to our Newsletter</h2>
+            <p class="text-gray-600 dark:text-gray-400 mb-6">
+              Stay updated with our latest products, trends, and exclusive offers.
+            </p>
+            
+            <form class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
+              <input 
+                type="email" 
+                placeholder="Your email address" 
+                class="flex-1 px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-border focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-dark-bg"
+                required
+              >
+              <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Footer -->
+      <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+            <div>
+              <div class="flex items-center gap-2 mb-4">
+                <div class="text-primary-400 text-3xl">
+                  <i class="fas fa-shopping-bag"></i>
+                </div>
+                <h2 class="text-xl font-bold">ShopNow</h2>
+              </div>
+              <p class="text-gray-400 mb-4">
+                Your one-stop destination for trendy fashion and accessories.
+              </p>
+              <div class="flex gap-4">
+                <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                  <i class="fab fa-pinterest"></i>
+                </a>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-bold mb-4">Shop</h3>
+              <ul class="space-y-2">
+                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">Women</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">Men</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">Accessories</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">Shoes</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">New Arrivals</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">Sale</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-bold mb-4">About</h3>
+              <ul class="space-y-2">
+                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">Our Story</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">Careers</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">Corporate Responsibility</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">Press</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">Store Locations</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-bold mb-4">Customer Service</h3>
+              <ul class="space-y-2">
+                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">Contact Us</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">Shipping & Returns</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">FAQ</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">Size Guide</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">Track Order</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="border-t border-gray-800 pt-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+              <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                &copy; 2023 ShopNow. All rights reserved.
+              </p>
+              
+              <div class="flex items-center gap-4">
+                <a href="#" class="text-gray-500 hover:text-primary-400 transition-colors text-sm">Privacy Policy</a>
+                <a href="#" class="text-gray-500 hover:text-primary-400 transition-colors text-sm">Terms of Service</a>
+                <a href="#" class="text-gray-500 hover:text-primary-400 transition-colors text-sm">Cookie Policy</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      
+      <!-- Quick View Modal -->
+      <div id="quickViewModal" class="fixed inset-0 z-50 hidden items-center justify-center overflow-auto">
+        <div class="fixed inset-0 bg-black/50"></div>
+        <div class="relative max-w-6xl w-full mx-4 bg-white dark:bg-dark-card rounded-lg shadow-xl max-h-[90vh] overflow-auto">
+          <button id="closeQuickView" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 z-10">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-6">
+            <div>
+              <div class="overflow-hidden rounded-lg">
+                <img id="quickViewImage" src="" alt="Product" class="w-full h-auto object-cover">
+              </div>
+              
+              <div class="grid grid-cols-4 gap-2 mt-4">
+                <div class="cursor-pointer overflow-hidden rounded-lg border-2 border-transparent hover:border-primary-500">
+                  <img id="thumbnail1" src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=100&ixid=MnwxfDB8MXxyYW5kb218MHx8d29tZW4sZHJlc3N8fHx8fHwxNjg1MDI4ODky&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=100" alt="Product thumbnail" class="w-full h-20 object-cover">
+                </div>
+                <div class="cursor-pointer overflow-hidden rounded-lg border-2 border-transparent hover:border-primary-500">
+                  <img id="thumbnail2" src="https://images.unsplash.com/photo-1501127122-f385ca6ddd9d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=100&ixid=MnwxfDB8MXxyYW5kb218MHx8d29tZW4sZHJlc3N8fHx8fHwxNjg1MDMxNDE5&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=100" alt="Product thumbnail" class="w-full h-20 object-cover">
+                </div>
+                <div class="cursor-pointer overflow-hidden rounded-lg border-2 border-transparent hover:border-primary-500">
+                  <img id="thumbnail3" src="https://images.unsplash.com/photo-1554412933-514a83d2f3c8?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=100&ixid=MnwxfDB8MXxyYW5kb218MHx8d29tZW4sZHJlc3N8fHx8fHwxNjg1MDMxNDcw&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=100" alt="Product thumbnail" class="w-full h-20 object-cover">
+                </div>
+                <div class="cursor-pointer overflow-hidden rounded-lg border-2 border-transparent hover:border-primary-500">
+                  <img id="thumbnail4" src="https://images.unsplash.com/photo-1612336307429-8a898d10e223?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=100&ixid=MnwxfDB8MXxyYW5kb218MHx8d29tZW4sZHJlc3N8fHx8fHwxNjg1MDMxNTEz&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=100" alt="Product thumbnail" class="w-full h-20 object-cover">
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <span id="quickViewBadge" class="inline-block px-2 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 text-xs font-medium mb-2">New</span>
+              
+              <h2 id="quickViewTitle" class="text-2xl font-bold mb-2">Product Title</h2>
+              
+              <div class="flex items-center gap-2 mb-4">
+                <div class="flex items-center text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="text-sm text-gray-600 dark:text-gray-400">(24 reviews)</span>
+              </div>
+              
+              <div class="mb-6">
+                <span id="quickViewPrice" class="text-2xl font-bold mr-2">$49.99</span>
+                <span id="quickViewOldPrice" class="text-gray-500 line-through text-lg hidden">$59.99</span>
+              </div>
+              
+              <div class="mb-6">
+                <h3 class="font-medium mb-2">Description:</h3>
+                <p id="quickViewDescription" class="text-gray-600 dark:text-gray-400">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam quis aliquam faucibus, nisl quam aliquet nunc, quis aliquet nisl nunc quis nisl.
+                </p>
+              </div>
+              
+              <div class="mb-6">
+                <h3 class="font-medium mb-2">Size:</h3>
+                <div class="flex flex-wrap gap-2">
+                  <button class="w-10 h-10 rounded-full border border-gray-300 dark:border-dark-border flex items-center justify-center text-sm hover:border-primary-500 dark:hover:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400">XS</button>
+                  <button class="w-10 h-10 rounded-full border border-gray-300 dark:border-dark-border flex items-center justify-center text-sm hover:border-primary-500 dark:hover:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400">S</button>
+                  <button class="w-10 h-10 rounded-full border bg-primary-500 text-white flex items-center justify-center text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400">M</button>
+                  <button class="w-10 h-10 rounded-full border border-gray-300 dark:border-dark-border flex items-center justify-center text-sm hover:border-primary-500 dark:hover:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400">L</button>
+                  <button class="w-10 h-10 rounded-full border border-gray-300 dark:border-dark-border flex items-center justify-center text-sm hover:border-primary-500 dark:hover:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400">XL</button>
+                </div>
+              </div>
+              
+              <div class="mb-6">
+                <h3 class="font-medium mb-2">Color:</h3>
+                <div class="flex gap-2">
+                  <button class="w-8 h-8 rounded-full bg-red-500 border-2 border-white dark:border-dark-card shadow-md focus:outline-none focus:ring-2 focus:ring-red-500"></button>
+                  <button class="w-8 h-8 rounded-full bg-blue-500 border-2 border-white dark:border-dark-card shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"></button>
+                  <button class="w-8 h-8 rounded-full bg-green-500 border-2 border-white dark:border-dark-card shadow-md focus:outline-none focus:ring-2 focus:ring-green-500"></button>
+                  <button class="w-8 h-8 rounded-full bg-yellow-500 border-2 border-white dark:border-dark-card shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-500"></button>
+                  <button class="w-8 h-8 rounded-full bg-purple-500 border-2 border-white dark:border-dark-card shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500"></button>
+                </div>
+              </div>
+              
+              <div class="mb-6 flex items-center gap-4">
+                <div class="flex items-center">
+                  <button class="w-10 h-10 bg-gray-100 dark:bg-dark-border rounded-l-lg flex items-center justify-center border border-gray-300 dark:border-dark-border hover:bg-gray-200 dark:hover:bg-dark-bg focus:outline-none">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <input type="number" value="1" min="1" class="w-14 h-10 border-y border-gray-300 dark:border-dark-border text-center focus:outline-none dark:bg-dark-bg">
+                  <button class="w-10 h-10 bg-gray-100 dark:bg-dark-border rounded-r-lg flex items-center justify-center border border-gray-300 dark:border-dark-border hover:bg-gray-200 dark:hover:bg-dark-bg focus:outline-none">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+                
+                <button class="flex-1 btn btn-primary">
+                  <i class="fas fa-shopping-cart mr-2"></i>
+                  Add to Cart
+                </button>
+              </div>
+              
+              <div class="flex items-center gap-4">
+                <button class="flex items-center text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                  <i class="fas fa-heart mr-2"></i>
+                  Add to Wishlist
+                </button>
+                
+                <button class="flex items-center text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                  <i class="fas fa-share-alt mr-2"></i>
+                  Share
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Toast Notifications -->
+      <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 max-w-xs w-full"></div>
+      
+      <!-- Wishlist Sidebar -->
+      <div id="wishlistSidebar" class="fixed top-0 right-0 w-full sm:w-96 h-full bg-white dark:bg-dark-card shadow-xl z-40 transform translate-x-full transition-transform duration-300">
+        <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-dark-border">
+          <h2 class="text-xl font-bold">Your Wishlist</h2>
+          <button id="closeWishlist" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+        
+        <div id="wishlistItems" class="p-4 h-[calc(100%-10rem)] overflow-auto">
+          <!-- Wishlist items will be dynamically added here -->
+          <div class="text-center text-gray-500 dark:text-gray-400 py-8">
+            <i class="fas fa-heart text-6xl mb-4 opacity-20"></i>
+            <p>Your wishlist is empty</p>
+          </div>
+        </div>
+        
+        <div class="p-4 border-t border-gray-200 dark:border-dark-border">
+          <button class="w-full btn btn-primary">
+            Add All to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- JavaScript for Theme Toggle, Mobile Menu, Search Overlay, etc. -->
+    <script>
+      // Wait for DOM to be fully loaded
+      document.addEventListener('DOMContentLoaded', function() {
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        
+        // Check for saved theme preference or respect OS preference
+        if (localStorage.getItem('color-theme') === 'dark' || 
+            (!localStorage.getItem('color-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+        
+        // Toggle dark/light mode
+        darkModeToggle.addEventListener('click', function() {
+          if (document.documentElement.classList.contains('dark')) {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
+          } else {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+          }
+        });
+        
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+          mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Search Overlay Toggle
+        const searchToggle = document.getElementById('searchToggle');
+        const searchOverlay = document.getElementById('searchOverlay');
+        const closeSearch = document.getElementById('closeSearch');
+        
+        searchToggle.addEventListener('click', function() {
+          searchOverlay.classList.remove('hidden');
+          searchOverlay.classList.add('flex');
+          setTimeout(() => {
+            searchOverlay.querySelector('input').focus();
+          }, 100);
+        });
+        
+        closeSearch.addEventListener('click', function() {
+          searchOverlay.classList.add('hidden');
+          searchOverlay.classList.remove('flex');
+        });
+        
+        // Close search on escape key
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && !searchOverlay.classList.contains('hidden')) {
+            searchOverlay.classList.add('hidden');
+            searchOverlay.classList.remove('flex');
+          }
+        });
+        
+        // Category Filter Buttons
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const mobileFilter = document.getElementById('mobileFilter');
+        const productCards = document.querySelectorAll('.product-card');
+        
+        // Desktop filter
+        filterBtns.forEach(btn => {
+          btn.addEventListener('click', function() {
+            // Remove active class from all buttons
+            filterBtns.forEach(b => b.classList.remove('active'));
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            filterProducts(this.dataset.category);
+          });
+        });
+        
+        // Mobile filter
+        mobileFilter.addEventListener('change', function() {
+          filterProducts(this.value);
+        });
+        
+        function filterProducts(category) {
+          productCards.forEach(card => {
+            if (category === 'all' || card.dataset.category === category) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        }
+        
+        // Quick View Modal
+        const quickViewBtns = document.querySelectorAll('.quick-view-btn');
+        const quickViewModal = document.getElementById('quickViewModal');
+        const closeQuickView = document.getElementById('closeQuickView');
+        const quickViewImage = document.getElementById('quickViewImage');
+        const quickViewTitle = document.getElementById('quickViewTitle');
+        const quickViewPrice = document.getElementById('quickViewPrice');
+        const quickViewOldPrice = document.getElementById('quickViewOldPrice');
+        const quickViewDescription = document.getElementById('quickViewDescription');
+        const quickViewBadge = document.getElementById('quickViewBadge');
+        
+        // Product data (in a real app this would come from a database)
+        const products = {
+          1: {
+            title: 'Summer Floral Dress',
+            price: '$49.99',
+            oldPrice: '',
+            description: 'A beautiful floral dress perfect for summer days. Made with lightweight fabric for maximum comfort.',
+            image: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8d29tZW4sZHJlc3N8fHx8fHwxNjg1MDI4ODky&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500',
+            badge: 'New'
+          },
+          2: {
+            title: 'Classic Blue Oxford Shirt',
+            price: '$38.50',
+            oldPrice: '',
+            description: 'A timeless oxford shirt in classic blue. Perfect for both casual and semi-formal occasions.',
+            image: 'https://images.unsplash.com/photo-1617196034183-421b4917c92d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8bWVuLHNoaXJ0fHx8fHx8MTY4NTAyODk1NQ&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500',
+            badge: ''
+          },
+          3: {
+            title: 'Minimalist Chronograph Watch',
+            price: '$129.99',
+            oldPrice: '',
+            description: 'A sophisticated minimalist watch with chronograph functionality. Water-resistant up to 50 meters.',
+            image: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8YWNjZXNzb3JpZXMsd2F0Y2h8fHx8fHwxNjg1MDI5MDAx&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500',
+            badge: 'Bestseller'
+          },
+          4: {
+            title: 'High-Waisted Skinny Jeans',
+            price: '$39.99',
+            oldPrice: '$49.99',
+            description: 'Comfortable high-waisted skinny jeans with a perfect fit. Made with stretch denim for all-day comfort.',
+            image: 'https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8d29tZW4samVhbnN8fHx8fHwxNjg1MDI5MDUw&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500',
+            badge: 'Sale'
+          },
+          5: {
+            title: 'Slim Fit Bomber Jacket',
+            price: '$89.99',
+            oldPrice: '',
+            description: 'A modern take on the classic bomber jacket. Features ribbed cuffs and a sleek silhouette.',
+            image: 'https://images.unsplash.com/photo-1509182469511-7f0b50bfa63e?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8bWVuLGphY2tldHx8fHx8fDE2ODUwMjkwOTI&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500',
+            badge: ''
+          },
+          6: {
+            title: 'Genuine Leather Crossbody Bag',
+            price: '$79.99',
+            oldPrice: '',
+            description: 'A stylish genuine leather crossbody bag with multiple compartments. Perfect for everyday use.',
+            image: 'https://images.unsplash.com/photo-1590548784585-643d2b9f2925?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8YWNjZXNzb3JpZXMsYmFnfHx8fHx8MTY4NTAyOTEzNQ&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500',
+            badge: ''
+          },
+          7: {
+            title: 'Cozy Knit Turtleneck Sweater',
+            price: '$59.99',
+            oldPrice: '',
+            description: 'A warm and cozy turtleneck sweater, perfect for those cold winter days. Made with soft, high-quality yarn.',
+            image: 'https://images.unsplash.com/photo-1551163943-3f7253a9ee72?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8d29tZW4sc3dlYXRlcnx8fHx8fDE2ODUwMjkxOTU&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500',
+            badge: ''
+          },
+          8: {
+            title: 'Slim Fit Wool Blend Suit',
+            price: '$199.99',
+            oldPrice: '$235.00',
+            description: 'A sophisticated slim fit suit made from premium wool blend. Perfect for formal occasions and business meetings.',
+            image: 'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8bWVuLHN1aXR8fHx8fHwxNjg1MDI5MjMz&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500',
+            badge: 'Sale'
+          }
+        };
+        
+        // Show quick view modal
+        quickViewBtns.forEach(btn => {
+          btn.addEventListener('click', function() {
+            const productId = this.dataset.productId;
+            const product = products[productId];
+            
+            // Update modal content
+            quickViewImage.src = product.image;
+            quickViewTitle.textContent = product.title;
+            quickViewPrice.textContent = product.price;
+            quickViewDescription.textContent = product.description;
+            
+            // Handle old price
+            if (product.oldPrice) {
+              quickViewOldPrice.textContent = product.oldPrice;
+              quickViewOldPrice.classList.remove('hidden');
+            } else {
+              quickViewOldPrice.classList.add('hidden');
+            }
+            
+            // Handle badge
+            if (product.badge) {
+              quickViewBadge.textContent = product.badge;
+              quickViewBadge.classList.remove('hidden');
+              
+              // Update badge color based on type
+              if (product.badge === 'Sale') {
+                quickViewBadge.className = 'inline-block px-2 py-1 rounded-full bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300 text-xs font-medium mb-2';
+              } else if (product.badge === 'New') {
+                quickViewBadge.className = 'inline-block px-2 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 text-xs font-medium mb-2';
+              } else if (product.badge === 'Bestseller') {
+                quickViewBadge.className = 'inline-block px-2 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 text-xs font-medium mb-2';
+              }
+            } else {
+              quickViewBadge.classList.add('hidden');
+            }
+            
+            // Show modal
+            quickViewModal.classList.remove('hidden');
+            quickViewModal.classList.add('flex');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+          });
+        });
+        
+        // Close quick view modal
+        closeQuickView.addEventListener('click', function() {
+          quickViewModal.classList.add('hidden');
+          quickViewModal.classList.remove('flex');
+          document.body.style.overflow = ''; // Restore scrolling
+        });
+        
+        // Close modal on click outside
+        quickViewModal.addEventListener('click', function(e) {
+          if (e.target === quickViewModal) {
+            quickViewModal.classList.add('hidden');
+            quickViewModal.classList.remove('flex');
+            document.body.style.overflow = ''; // Restore scrolling
+          }
+        });
+        
+        // Close modal on escape key
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && !quickViewModal.classList.contains('hidden')) {
+            quickViewModal.classList.add('hidden');
+            quickViewModal.classList.remove('flex');
+            document.body.style.overflow = ''; // Restore scrolling
+          }
+        });
+        
+        // Thumbnail image click in quick view
+        const thumbnails = document.querySelectorAll('#thumbnail1, #thumbnail2, #thumbnail3, #thumbnail4');
+        
+        thumbnails.forEach(thumbnail => {
+          thumbnail.addEventListener('click', function() {
+            quickViewImage.src = this.src.replace('h=100', 'h=700').replace('w=100', 'w=500');
+            
+            // Update thumbnail borders
+            thumbnails.forEach(thumb => {
+              thumb.parentElement.classList.remove('border-primary-500');
+              thumb.parentElement.classList.add('border-transparent');
+            });
+            
+            this.parentElement.classList.remove('border-transparent');
+            this.parentElement.classList.add('border-primary-500');
+          });
+        });
+        
+        // Wishlist functionality
+        const wishlistBtns = document.querySelectorAll('.wishlist-btn');
+        const wishlistBtn = document.getElementById('wishlistBtn');
+        const wishlistSidebar = document.getElementById('wishlistSidebar');
+        const closeWishlist = document.getElementById('closeWishlist');
+        const wishlistItems = document.getElementById('wishlistItems');
+        const wishlistCount = document.getElementById('wishlistCount');
+        
+        let wishlist = [];
+        
+        // Toggle wishlist sidebar
+        wishlistBtn.addEventListener('click', function() {
+          wishlistSidebar.classList.toggle('translate-x-full');
+          
+          if (!wishlistSidebar.classList.contains('translate-x-full')) {
+            // Add overlay when sidebar is open
+            const overlay = document.createElement('div');
+            overlay.id = 'wishlistOverlay';
+            overlay.className = 'fixed inset-0 bg-black/50 z-30';
+            document.body.appendChild(overlay);
+            
+            overlay.addEventListener('click', function() {
+              wishlistSidebar.classList.add('translate-x-full');
+              this.remove();
+            });
+          } else {
+            // Remove overlay when sidebar is closed
+            const overlay = document.getElementById('wishlistOverlay');
+            if (overlay) overlay.remove();
+          }
+        });
+        
+        // Close wishlist sidebar
+        closeWishlist.addEventListener('click', function() {
+          wishlistSidebar.classList.add('translate-x-full');
+          
+          // Remove overlay
+          const overlay = document.getElementById('wishlistOverlay');
+          if (overlay) overlay.remove();
+        });
+        
+        // Add to wishlist
+        wishlistBtns.forEach(btn => {
+          btn.addEventListener('click', function() {
+            // Get product information
+            const productCard = this.closest('.product-card');
+            const productId = productCard.querySelector('.quick-view-btn').dataset.productId;
+            
+            // Check if product is already in wishlist
+            if (wishlist.includes(productId)) {
+              // Remove from wishlist
+              wishlist = wishlist.filter(id => id !== productId);
+              showToast('Product removed from wishlist', 'info');
+              this.style.color = ''; // Reset color
+            } else {
+              // Add to wishlist
+              wishlist.push(productId);
+              showToast('Product added to wishlist', 'success');
+              this.style.color = '#ef4444'; // Red heart
+            }
+            
+            // Update wishlist count
+            wishlistCount.textContent = wishlist.length;
+            
+            // Update wishlist sidebar
+            updateWishlistSidebar();
+          });
+        });
+        
+        // Update wishlist sidebar
+        function updateWishlistSidebar() {
+          // Clear current items
+          wishlistItems.innerHTML = '';
+          
+          if (wishlist.length === 0) {
+            // Show empty state
+            wishlistItems.innerHTML = `
+              <div class="text-center text-gray-500 dark:text-gray-400 py-8">
+                <i class="fas fa-heart text-6xl mb-4 opacity-20"></i>
+                <p>Your wishlist is empty</p>
+              </div>
+            `;
+            return;
+          }
+          
+          // Add each wishlist item
+          wishlist.forEach(productId => {
+            const product = products[productId];
+            
+            const item = document.createElement('div');
+            item.className = 'flex items-start gap-3 border-b border-gray-200 dark:border-dark-border py-3';
+            item.innerHTML = `
+              <img src="${product.image}" alt="${product.title}" class="w-20 h-20 object-cover rounded-lg">
+              <div class="flex-1">
+                <h3 class="font-medium">${product.title}</h3>
+                <div class="flex items-center mt-1">
+                  <span class="font-bold">${product.price}</span>
+                  ${product.oldPrice ? `<span class="text-gray-500 line-through ml-2 text-sm">${product.oldPrice}</span>` : ''}
+                </div>
+                <div class="flex items-center gap-2 mt-2">
+                  <button class="text-xs text-primary-600 dark:text-primary-400 hover:underline add-to-cart-from-wishlist" data-product-id="${productId}">
+                    Add to Cart
+                  </button>
+                  <button class="text-xs text-gray-500 hover:text-red-500 dark:hover:text-red-400 hover:underline remove-from-wishlist" data-product-id="${productId}">
+                    Remove
+                  </button>
+                </div>
+              </div>
+            `;
+            
+            wishlistItems.appendChild(item);
+          });
+          
+          // Add event listeners to new buttons
+          document.querySelectorAll('.remove-from-wishlist').forEach(btn => {
+            btn.addEventListener('click', function() {
+              const productId = this.dataset.productId;
+              
+              // Remove from wishlist
+              wishlist = wishlist.filter(id => id !== productId);
+              
+              // Update wishlist count
+              wishlistCount.textContent = wishlist.length;
+              
+              // Update wishlist sidebar
+              updateWishlistSidebar();
+              
+              showToast('Product removed from wishlist', 'info');
+            });
+          });
+          
+          document.querySelectorAll('.add-to-cart-from-wishlist').forEach(btn => {
+            btn.addEventListener('click', function() {
+              const productId = this.dataset.productId;
+              const product = products[productId];
+              
+              showToast(`${product.title} added to cart`, 'success');
+            });
+          });
+        }
+        
+        // Add to cart functionality
+        const addToCartBtns = document.querySelectorAll('.add-to-cart-btn');
+        
+        addToCartBtns.forEach(btn => {
+          btn.addEventListener('click', function() {
+            // Get product information
+            const productCard = this.closest('.product-card');
+            const productId = productCard.querySelector('.quick-view-btn').dataset.productId;
+            const product = products[productId];
+            
+            showToast(`${product.title} added to cart`, 'success');
+          });
+        });
+        
+        // Toast notification system
+        function showToast(message, type = 'info') {
+          const toastContainer = document.getElementById('toastContainer');
+          
+          const toast = document.createElement('div');
+          let bgColor, icon;
+          
+          if (type === 'success') {
+            bgColor = 'bg-green-500';
+            icon = '<i class="fas fa-check-circle"></i>';
+          } else if (type === 'error') {
+            bgColor = 'bg-red-500';
+            icon = '<i class="fas fa-exclamation-circle"></i>';
+          } else {
+            bgColor = 'bg-blue-500';
+            icon = '<i class="fas fa-info-circle"></i>';
+          }
+          
+          toast.className = `${bgColor} text-white p-3 rounded-lg shadow-lg flex items-center max-w-xs w-full transform transition-all duration-300 opacity-0 translate-y-2`;
+          toast.innerHTML = `
+            <div class="mr-2">${icon}</div>
+            <div class="flex-1">${message}</div>
+            <button class="ml-2 text-white/80 hover:text-white focus:outline-none">
+              <i class="fas fa-times"></i>
+            </button>
+          `;
+          
+          toastContainer.appendChild(toast);
+          
+          // Trigger animation
+          setTimeout(() => {
+            toast.classList.remove('opacity-0', 'translate-y-2');
+          }, 10);
+          
+          // Set timeout to remove toast
+          const timeoutId = setTimeout(() => {
+            removeToast(toast);
+          }, 3000);
+          
+          // Close button
+          toast.querySelector('button').addEventListener('click', () => {
+            clearTimeout(timeoutId);
+            removeToast(toast);
+          });
+        }
+        
+        function removeToast(toast) {
+          toast.classList.add('opacity-0', 'translate-y-2');
+          
+          setTimeout(() => {
+            toast.remove();
+          }, 300); // Match the duration of the transition
+        }
+        
+        // Load more products button (demo functionality)
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        
+        loadMoreBtn.addEventListener('click', function() {
+          // In a real app, this would load more products from the server
+          // For demo, we'll just show a message
+          this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Loading...';
+          
+          setTimeout(() => {
+            this.innerHTML = 'Load More Products';
+            showToast('No more products to load', 'info');
+          }, 1500);
+        });
+        
+        // Product thumbnail gallery in quick view modal
+        document.querySelectorAll('#thumbnail1, #thumbnail2, #thumbnail3, #thumbnail4').forEach(thumbnail => {
+          thumbnail.addEventListener('click', function() {
+            quickViewImage.src = this.src.replace('h=100&w=100', 'h=700&w=500');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
